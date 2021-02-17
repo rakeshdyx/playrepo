@@ -1,0 +1,14 @@
+---
+- name: user management
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: create user
+    user:
+      name: user1
+      comment: Test user
+  
+  - name: set password
+    shell: "echo 'Welcome1323'| passwd --stdin user1 "
