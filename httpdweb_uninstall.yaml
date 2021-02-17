@@ -1,0 +1,17 @@
+---
+- name: Stop and Unintsall https
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Stop http service
+    service:
+      name: httpd
+      state: stopped
+  
+  - name: Uninstall httpd
+    yum:
+      name: httpd
+      state: absent
+  
