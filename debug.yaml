@@ -6,4 +6,6 @@
   tasks:
   - name: Get default IP and Hostname
     debug:
-      msg: "{{ ansible_hostname }} has ip address {{ ansible_default_ipv4.address }}"
+#      msg: "{{ ansible_hostname }} has ip address {{ ansible_default_ipv4.address }}"
+      msg: "{{ ansible_mounts.mount }} has FS type {{ ansible_mounts.fstype }}"
+      
