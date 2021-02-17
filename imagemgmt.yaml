@@ -1,0 +1,21 @@
+---
+- name: Conatiner Image Management
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Remove Docker image
+      docker_image:
+        state: absent
+        name: rakeshdyx/javawebapp
+        tag: latest
+      ignore_errors: yes
+
+    - name: Build docker image
+      docker_image:
+        name: rakeshdyx/javawebapp
+        build:
+          path: ~ansible/docker/deploy
+        tag: latest
+        push: yes
+        source: build
