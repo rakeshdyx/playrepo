@@ -1,0 +1,9 @@
+---
+- name: Check facts
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Get default IP and Hostname
+    debug:
+      msg: "{{ ansible_hostname }} has ip address {{ ansible_default_ipv4.address }}"
