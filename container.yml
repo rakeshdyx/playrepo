@@ -1,0 +1,30 @@
+---
+- name: Manage docker conatiner
+  hosts: all
+  become: true
+
+  tasks:
+
+  - name: Delete the conatiner
+    docker_container:
+      name: webapp01
+      force_kill: yes
+      state: absent
+    ignore_errors: yes
+  
+  - name: Remove Docker image
+    docker_image:
+        state: absent
+        name: rakeshdyx/javawebapp
+        tag: latest
+    ignore_errors: yes
+
+  - name: Create web app conatiner
+    docker_container:
+      name: webapp01
+      image: rakeshdyx/javawebapp:latest
+      state: started
+      ports:
+       - "8080:8080"
+      detach: yes
+
