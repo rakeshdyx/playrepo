@@ -9,7 +9,7 @@
 
   tasks:
 
-  - name: Install all packages
+  - name: Install all pakcage list
     yum:
       name: "{{ items }}"
       state: latest
@@ -19,5 +19,5 @@
     service:
       name: "{{ items }}"
       state: started
-      enabled: yes
+      enabled: true
     with_items: "{{ packages }}"
