@@ -1,0 +1,25 @@
+---
+- name: Handler demo with vsftpd package
+  hosts: all
+  become: yes
+
+  tasks:
+  
+  - name: remove vsftpd
+    yum:
+      name: vsftpd
+      state: absent
+  
+  - name: Install vsftpd
+    yum:
+      name: vsftpd
+      state: present
+    notify: fpt_start
+  
+  handlers:
+  - name: fpt_start
+    service:
+      name: vsftpd
+      state: start
+
+    
