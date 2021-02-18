@@ -9,6 +9,7 @@
     yum:
       name: vsftpd
       state: absent
+    ignore_errors: yes
   
   - name: Install vsftpd
     yum:
@@ -20,6 +21,6 @@
   - name: fpt_start
     service:
       name: vsftpd
-      state: start
+      state: started
 
     
