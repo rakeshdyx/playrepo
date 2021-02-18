@@ -11,13 +11,13 @@
 
   - name: Install all packages
     yum:
-      name: {{ items }}
+      name: "{{ items }}"
       state: latest
-    with_items: {{ packages }}
+    with_items: "{{ packages }}"
 
   - name: start service
     service:
-      name: {{ items }}
+      name: "{{ items }}"
       state: started
       enabled: yes
-    with_items: {{ packages }}
+    with_items: "{{ packages }}"
