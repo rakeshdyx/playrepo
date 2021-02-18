@@ -11,13 +11,13 @@
 
   - name: Install all pakcage list
     yum:
-      name: "{{ items }}"
+      name: "{{ item }}"
       state: latest
     with_items: "{{ packages }}"
 
   - name: start service
     service:
-      name: "{{ items }}"
+      name: "{{ item }}"
       state: started
       enabled: true
     with_items: "{{ packages }}"
