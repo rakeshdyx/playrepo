@@ -1,0 +1,43 @@
+---
+- name:
+  hosts: all
+  tasks:
+
+
+  - name: copy multiple file to a single location
+    copy:
+     src: "{{ item }}"
+     dest: "/tmp"
+     mode: 0644
+     owner: ansible
+     group: root
+    with_items:
+     - /etc/passwd
+     - /etc/krb5.conf
+     - /etc/group
+  
+
+  - name: Create directory
+    file:
+     path: '{{ item }}'
+     state: directory
+    with_items:
+     - /tmp/dir1
+     - /tmp/dir2
+     - /tmp/dir3
+     - /tmp/dir4
+
+  - name: Copy multiple file to multiple location
+    copy:
+     src: "{{ item.src }}"
+     dest: "{{ item.dest }}"
+     mode: 0644
+     owner: ansible
+     group: root
+    with_items:
+      - { src: '/root/testfile1.txt', dest: '/tmp/dir1/testfile1.txt' }
+      - { src: '/root/testfile2.txt', dest: '/tmp/dir2/testfile2.txt' }
+      - { src: '/root/testfile3.txt', dest: '/tmp/dir3/testfile3.txt' }
+      - { src: '/root/testfile4.txt', dest: '/tmp/dir4/testfile4.txt' }
+
+
